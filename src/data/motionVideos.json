@@ -1,0 +1,23 @@
+{
+ "version": 1,
+ "videos": {
+  "g2-c1": {
+   "title": "علم التصنيف",
+   "grade": 2,
+   "chapter": 1,
+   "seconds": 65,
+   "url": "https://cdn.jsdelivr.net/gh/hmht9797-byte/biology-has@8112271839466edb6c3206762c589040cab1e009/media/motion/g2-c1.mp4",
+   "poster": "https://cdn.jsdelivr.net/gh/hmht9797-byte/biology-has@8112271839466edb6c3206762c589040cab1e009/media/motion/g2-c1.jpg",
+   "host": "jsdelivr"
+  },
+  "g6-c1": {
+   "title": "الخلية",
+   "grade": 6,
+   "chapter": 1,
+   "seconds": 68,
+   "url": "https://cdn.jsdelivr.net/gh/hmht9797-byte/biology-has@eb56326eed4cc38a638dbe5cee1ae7e386a24b7f/media/motion/g6-c1.mp4",
+   "poster": "https://cdn.jsdelivr.net/gh/hmht9797-byte/biology-has@eb56326eed4cc38a638dbe5cee1ae7e386a24b7f/media/motion/g6-c1.jpg",
+   "host": "jsdelivr"
+  }
+ }
+}

@@ -1314,6 +1314,35 @@ small.hk{display:block;margin-top:4px;font-size:.92em;line-height:1.75;color:#8a
 /* place, inputs and outputs under each step of a process */
 .steps small.io{display:block;margin-top:2px;font-size:.92em;line-height:1.75;color:var(--muted)}
 
+/* ===== chapter motion-graphics summary card + player (motion.js) ===== */
+.mcard{margin:16px 0 22px;border-radius:var(--r-lg,20px);overflow:hidden;background:#fff;box-shadow:var(--sh-2),inset 0 0 0 1px var(--line)}
+.mopen{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:14px;width:100%;padding:12px;cursor:pointer}
+.mopen:focus-visible{outline:3px solid var(--em-500);outline-offset:-3px}
+.mthumb{position:relative;flex:none;width:132px;aspect-ratio:16/9;border-radius:14px;overflow:hidden;background:linear-gradient(135deg,var(--em-800),var(--em-600))}
+.mthumb img{width:100%;height:100%;object-fit:cover;display:block}
+.mplay{position:absolute;inset:0;display:grid;place-items:center;color:#fff;background:rgba(2,44,34,.28)}
+.mplay svg{width:44px;height:44px;padding:9px;border-radius:50%;background:rgba(255,255,255,.22);backdrop-filter:blur(4px);transition:transform var(--t-fast,.15s)}
+.mopen:hover .mplay svg{transform:scale(1.08)}
+.mtxt{display:flex;flex-direction:column;gap:3px;min-width:0}
+.mtxt small{display:flex;align-items:center;gap:5px;color:var(--em-700);font:800 12px var(--f-head)}
+.mtxt .mt{font:900 17px/1.3 var(--f-head);color:var(--ink)}
+.mtxt>span:not(.mt){font:500 13px/1.5 var(--f-body);color:var(--muted)}
+.mcard.on{padding:12px}
+.mhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.mhead .mt{display:flex;align-items:center;gap:6px;font:900 15px/1.4 var(--f-head);color:var(--ink);min-width:0}
+.mx{flex:none;display:grid;place-items:center;width:var(--tap,44px);height:var(--tap,44px);border:0;border-radius:50%;background:var(--em-50);color:var(--em-800);cursor:pointer}
+.mframe{border-radius:14px;overflow:hidden;background:#000;aspect-ratio:16/9}
+.mframe video{display:block;width:100%;height:100%}
+.mbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+.mspeed{display:flex;gap:4px;padding:3px;border-radius:var(--r-pill,999px);background:var(--em-50)}
+.mspeed button,.mfs{min-height:38px;padding:0 12px;border:0;border-radius:var(--r-pill,999px);font:800 13px var(--f-head);cursor:pointer}
+.mspeed button{background:transparent;color:var(--em-800)}
+.mspeed button[aria-pressed="true"]{background:#fff;box-shadow:inset 0 0 0 1.5px var(--em-600)}
+.mfs{display:flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--em-800),var(--em-600));color:#fff}
+.merr{margin:10px 0 0;padding:10px 12px;border-radius:12px;background:#fff7ed;color:#9a3412;font:600 13px/1.6 var(--f-body)}
+.merr button{border:0;background:none;color:inherit;font:800 13px var(--f-head);text-decoration:underline;cursor:pointer}
+@media (max-width:380px){.mthumb{width:104px}.mtxt .mt{font-size:15.5px}}
+
 </style>
 
 <header class="bar"><div class="wrap">
@@ -1425,7 +1454,8 @@ function chapter(n){
   const c=CH.find(x=>x.n==n); if(!c) return home();
   $('#quizBtn').hidden=false;$('#barTitle').textContent=(c.lab==='المراجعة الشاملة'?'':unitName(c)+': ')+c.t;
   const last=CH[CH.length-1].n,P='g'+G.id+'-ch-';
-  $('#view').innerHTML=`<div class="wrap reader">${c.html}</div>`;
+  $('#view').innerHTML=`<div class="wrap reader">${motionCard(G.id,c)}${c.html}</div>`;
+  motionMount(G.id,c,$('#view'));
   const nav=$('#nav'); nav.hidden=false; nav.style.setProperty('--cc',c.c);
   $('#prevBtn').disabled=n==1; $('#nextBtn').disabled=n==last;
   $('#prevBtn').onclick=()=>go(P+(n-1)); $('#nextBtn').onclick=()=>go(P+(n+1));
@@ -2268,6 +2298,65 @@ window.wizChapterMount=function(c,g){
   $('#view .reader').appendChild(h);$('#wzCh').onclick=()=>{WF={g:g.id,ch:c.n,year:'',type:'',mode:'freq'};go('wizrun-g'+g.id)};
 };
 })();
+
+// ===== Motion-graphics chapter summaries: «شاهد ملخص الفصل - موشن غرافيك» =====
+// BOOK.motion["g2-c1"] = {url, poster, seconds} comes from src/data/motionVideos.json (motion-generator/).
+// The video is streamed from its link, so it is not part of the APK/AAB.
+ICON.film = '<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 9h18M3 15h18M8 4v5M16 4v5M8 15v5M16 15v5"/>';
+ICON.expand = '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>';
+
+const motionOf = (g, n) => (BOOK.motion || {})['g' + g + '-c' + n];
+
+function motionCard(g, c) {
+  const m = motionOf(g, c.n);
+  if (!m) return '';
+  return `<div class="mcard" id="mcard" role="region" aria-label="ملخص الفصل بالموشن غرافيك">
+    <button class="mopen" id="mopen" type="button">
+      <span class="mthumb">${m.poster ? `<img src="${m.poster}" alt="" loading="lazy">` : ''}<span class="mplay">${ico('play', 30)}</span></span>
+      <span class="mtxt"><small>${ico('film', 15)}موشن غرافيك، ${AR(m.seconds || 60)} ثانية</small><span class="mt">شاهد ملخص الفصل</span><span>${c.t} في أقل من دقيقتين، بصوت وترجمة عربية</span></span>
+    </button>
+  </div>`;
+}
+
+function motionMount(g, c, root) {
+  const m = motionOf(g, c.n), card = root.querySelector('#mcard');
+  if (!m || !card) return;
+  // after the chapter opener, before the first lesson
+  const open = root.querySelector('.ch-open, .unit-open');
+  if (open) open.after(card);
+  card.querySelector('#mopen').onclick = () => motionPlay(card, m, c);
+}
+
+function motionPlay(card, m, c) {
+  const RATES = [0.75, 1, 1.25, 1.5];
+  card.classList.add('on');
+  card.innerHTML = `<div class="mhead"><span class="mt">${ico('film', 18)}ملخص الفصل: ${c.t}</span><button class="mx" id="mclose" type="button" aria-label="أغلق الفيديو">${ico('x', 20)}</button></div>
+    <div class="mframe"><video id="mvid" src="${m.url}" ${m.poster ? `poster="${m.poster}"` : ''} controls playsinline preload="metadata" controlslist="nodownload"></video></div>
+    <div class="mbar">
+      <div class="mspeed" role="group" aria-label="سرعة التشغيل">${RATES.map(r => `<button type="button" data-r="${r}" aria-pressed="${r === 1}">${AR(String(r).replace('.', '٫'))}×</button>`).join('')}</div>
+      <button class="mfs" id="mfs" type="button">${ico('expand', 18)}ملء الشاشة</button>
+    </div>
+    <p class="merr" id="merr" hidden>تعذّر تشغيل الفيديو. يحتاج الملخص إلى اتصال بالإنترنت؛ اتصل ثم <button type="button" id="mretry">أعد المحاولة</button>.</p>`;
+  const v = card.querySelector('#mvid');
+  v.play().catch(() => {});
+  card.querySelectorAll('.mspeed button').forEach(b => b.onclick = () => {
+    v.playbackRate = +b.dataset.r;
+    card.querySelectorAll('.mspeed button').forEach(x => x.setAttribute('aria-pressed', x === b));
+  });
+  card.querySelector('#mfs').onclick = () => {
+    const f = v.requestFullscreen || v.webkitRequestFullscreen || v.webkitEnterFullscreen;
+    if (f) Promise.resolve(f.call(v)).catch(() => {});
+  };
+  v.onerror = () => { card.querySelector('#merr').hidden = false; };
+  card.querySelector('#mretry').onclick = () => { card.querySelector('#merr').hidden = true; v.load(); v.play().catch(() => {}); };
+  card.querySelector('#mclose').onclick = () => {
+    v.pause();
+    const fresh = document.createElement('div');
+    fresh.innerHTML = motionCard(G.id, c);
+    card.replaceWith(fresh.firstElementChild);
+    motionMount(G.id, c, $('#view'));
+  };
+}
 
 // app chrome: every icon comes from the shared library in extras.js
 function tabsInit(){const L={home:['book','الملازم'],lab:['cube','المختبر'],tests:['test','الاختبارات'],cards:['cards','البطاقات'],me:['user','تواصل']};document.querySelectorAll('#tabs button').forEach(b=>{const[i,t]=L[b.dataset.t];b.innerHTML=ico(i)+'<span>'+t+'</span>';b.onclick=()=>go(b.dataset.go)});new MutationObserver(()=>document.body.classList.toggle('has-tabs',!$('#tabs').hidden)).observe($('#tabs'),{attributes:true});

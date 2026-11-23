@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowInsets;
+import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -24,6 +25,9 @@ import android.window.OnBackInvokedDispatcher;
  */
 public class MainActivity extends Activity {
     private WebView web;
+    private FrameLayout root;
+    private View fullView;                       // the video while it plays full screen
+    private WebChromeClient.CustomViewCallback fullCallback;
 
     @Override
     protected void onCreate(Bundle state) {
@@ -31,7 +35,7 @@ public class MainActivity extends Activity {
 
         // Root container: dark emerald (the app header colour, --app-top #043127) behind the status bar /
         // navigation bar, visible because Android 15+ draws edge-to-edge.
-        FrameLayout root = new FrameLayout(this);
+        root = new FrameLayout(this);
         root.setBackgroundColor(Color.rgb(4, 49, 39));
 
         web = new WebView(this);
@@ -65,6 +69,22 @@ public class MainActivity extends Activity {
                 return true;
             }
         });
+        // Full screen for the motion-graphics player (<video> requestFullscreen). Playback still starts only from a tap.
+        s.setMediaPlaybackRequiresUserGesture(true);
+        web.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onShowCustomView(View view, CustomViewCallback callback) {
+                if (fullView != null) { callback.onCustomViewHidden(); return; }
+                fullView = view; fullCallback = callback;
+                root.addView(view, new FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
+                view.setBackgroundColor(Color.BLACK);
+                web.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onHideCustomView() { exitFullscreen(); }
+        });
         web.setBackgroundColor(Color.rgb(239, 245, 242));   // --app-bg #eff5f2: no colour flash before the page paints
         root.addView(web, new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
@@ -91,8 +111,17 @@ public class MainActivity extends Activity {
         if (Build.VERSION.SDK_INT >= 33) {
             getOnBackInvokedDispatcher().registerOnBackInvokedCallback(
                     OnBackInvokedDispatcher.PRIORITY_DEFAULT,
-                    () -> { if (web.canGoBack()) web.goBack(); else finish(); });
+                    () -> { if (fullView != null) exitFullscreen(); else if (web.canGoBack()) web.goBack(); else finish(); });
         }
+    }
+
+    /** Leaves full-screen video and shows the booklet again. */
+    private void exitFullscreen() {
+        if (fullView == null) return;
+        root.removeView(fullView);
+        fullView = null;
+        web.setVisibility(View.VISIBLE);
+        if (fullCallback != null) { fullCallback.onCustomViewHidden(); fullCallback = null; }
     }
 
     @Override
@@ -104,7 +133,8 @@ public class MainActivity extends Activity {
     @Override
     @SuppressWarnings("deprecation")
     public void onBackPressed() {   // Android 12 and older
-        if (web.canGoBack()) web.goBack();
+        if (fullView != null) exitFullscreen();
+        else if (web.canGoBack()) web.goBack();
         else super.onBackPressed();
     }
 }

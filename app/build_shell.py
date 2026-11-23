@@ -14,6 +14,6 @@ def read(p):
 
 def write_index():
     css = re.sub(r'@page[^{]*\{[^}]*\}', '', read(R + '/style.css'))
-    js = read(D + '/lab3d.js') + '\n' + read(D + '/extras.js') + '\n' + read(D + '/wiz.js')
+    js = read(D + '/lab3d.js') + '\n' + read(D + '/extras.js') + '\n' + read(D + '/wiz.js') + '\n' + read(D + '/motion.js')
     shell = read(D + '/shell.html').replace('/*BOOKCSS*/', css).replace('/*THEMECSS*/', read(D + '/theme.css')).replace('/*EXTRAJS*/', js)
     open(D + '/index.html', 'w', encoding='utf8').write(shell)
