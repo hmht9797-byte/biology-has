@@ -8,8 +8,7 @@
 
 لبناء نسخة جديدة لاحقًا (عند كل تحديث):
 1) زِد versionCode في app/build.gradle (23 ثم 24 …) وعدّل versionName.
-2) حدّث صفحة المتجر: python3 play/update_assets.py (يبني app/src/main/assets/index.html من app/index.html وapp/chapters.json، ويستعمل الخطوط الموجودة في المجلد).
-   (الطريقة القديمة ما زالت تعمل: شغّل android/build_apk.py ثم انسخ محتوى android/build/assets إلى app/src/main/assets.)
+2) شغّل android/build_apk.py ثم انسخ محتوى android/build/assets (index.html وthree.min.js وfonts) إلى app/src/main/assets.
    تنبيه: لا تنسخ app/index.html مباشرة؛ فهو يحمّل chapters.json من ملف منفصل غير موجود في الحزمة، أما نسخة build_apk.py فتضمّ الفصول داخلها (نحو 4.4 م.ب).
 3) ابنِ الملف بإحدى الطريقتين:
    - Android Studio: File > Open (مجلد BiologyBooklet) ثم Build > Generate Signed App Bundle or APK > Android App Bundle
@@ -68,7 +67,8 @@ Production > Create new release > ارفع app-release.aab > Countries: العر
 - صف جديد «الخامس العلمي» بين الرابع والسادس: ٧ فصول، ٦١ قسمًا، ٩٦٥ بطاقة حفظ، ٥١٨ سؤال اختيار مع شرح لكل إجابة.
 - المصدر: g5/data/chapterN.json (بواجهات g5/types.ts)، ويحوّله g5/build_g5.py إلى ملزمة بعناصر الملازم الأخرى:
   افتتاحية الفصل، دروس مرقّمة كما يطبعها الكتاب، تعاريف، علّل، اكتب المصطلح (بزر «اعرض الإجابة»)، مراحل العمليات، جداول المقارنة، معلومة إثرائية للاطلاع، خلاصة الفصل.
-- للتحديث وحده: python3 g5/build_g5.py ثم python3 play/update_assets.py. والبناء الكامل build_app.py يضمّ الصف تلقائيًا.
+- للتحديث وحده: python3 g5/build_g5.py ثم الخطوة 2 أعلاه (build_apk.py ونسخ assets). والبناء الكامل build_app.py يضمّ الصف تلقائيًا.
+- صفحة المتجر app/src/main/assets/index.html في هذا الفرع مبنية فعلًا بالإصدار 3.5.0 وتضمّ الصف الخامس.
 - بعد الإجابة عن سؤال من الخامس يظهر «الشرح» (لماذا الإجابة صحيحة)؛ أسئلة الصفوف الأخرى تبقى «التصحيح».
 - بطاقات الحفظ: تطول البطاقة حتى ٧٠٪ من الشاشة لتسع الجواب الطويل، وما زاد يُمرَّر داخلها (كانت الأجوبة الطويلة تخرج من البطاقة).
 - شريط الصفوف الستة يتسع على الهواتف الضيقة (٣٢٠ بكسل) دون قصّ «السادس».
