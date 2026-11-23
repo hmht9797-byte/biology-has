@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
                 return true;
             }
         });
-        // Full screen for the motion-graphics player (<video> requestFullscreen). Playback still starts only from a tap.
+        // Full screen for the chapter motion-graphics player (element requestFullscreen). Media still starts only from a tap.
         s.setMediaPlaybackRequiresUserGesture(true);
         web.setWebChromeClient(new WebChromeClient() {
             @Override

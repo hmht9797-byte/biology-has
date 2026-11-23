@@ -2,12 +2,12 @@
   "name": "biology-motion-generator",
   "private": true,
   "version": "1.0.0",
-  "description": "إنتاج فيديوهات موشن غرافيك تعليمية لملازم الأحياء (Remotion + تعليق عربي فصيح)",
+  "description": "موشن غرافيك تعليمي بموسيقى فقط لفصول ملازم الأحياء: تصدير MP4 اختياري من محرّك التطبيق نفسه (app/motion_engine.js)",
   "type": "module",
   "scripts": {
     "studio": "remotion studio src/index.ts",
-    "build": "tsc --noEmit && node scripts/check_curriculum.mjs",
-    "produce": "node scripts/produce_and_upload.mjs"
+    "build": "tsc --noEmit && node ../app/check_motion.cjs",
+    "export": "node scripts/export_mp4.mjs"
   },
   "dependencies": {
     "@remotion/bundler": "^4.0.242",

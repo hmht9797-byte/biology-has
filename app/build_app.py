@@ -231,9 +231,9 @@ book = {'grades': [
     g5,
     {'id': 6, 'name': 'السادس العلمي', 'sub': 'الموسوعة الهجينة، ٥ فصول + نماذج', 'c': '#b8860b', 'chapters': g6}]}
 book['figs'] = figs
-# motion-graphics summaries: src/data/motionVideos.json (made by motion-generator/scripts/produce_and_upload.mjs)
-sys.path.insert(0, os.path.join(R, 'motion-generator', 'scripts'))
-from link_app import motion_map
+# music-only motion graphics, one per chapter: app/motion/g<grade>/c<chapter>.json (see app/link_motion.py)
+sys.path.insert(0, os.path.join(R, 'app'))
+from link_motion import motion_map
 book['motion'] = motion_map()
 # chapter / grade colours carry white text (number tiles, grade chips): darken any that is under 4.5:1 on white, keeping its hue
 def _lum(h):
