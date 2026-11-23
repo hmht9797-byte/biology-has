@@ -43,7 +43,14 @@ ART = {
     7: '<path d="M52 36c-14 6-20 24-14 40 8 22 30 22 37 46 7-24 29-24 37-46 6-16 0-34-14-40-10-4-20 0-23 10-3-10-13-14-23-10Z"/><circle cx="75" cy="128" r="6"/>',
 }
 
-E = lambda s: _html.escape(str(s), quote=False)
+# an all-English parenthetical, e.g. «(Movement of Phloem Sap & Pressure Flow Theory)»: inside Arabic text the
+# bidi algorithm moves its brackets when it wraps onto a second line; <bdi> isolates it so it stays one LTR unit
+LATIN_PAREN = re.compile(r'\(([^()<>؀-ۿ]*[A-Za-z][^()<>؀-ۿ]*)\)')
+
+
+def E(s):
+    """Escapes text for HTML and isolates English parentheticals (used for text only, never for attributes)."""
+    return LATIN_PAREN.sub(r'<bdi>(\1)</bdi>', _html.escape(str(s), quote=False))
 AR = lambda s: re.sub(r'\d', lambda m: '٠١٢٣٤٥٦٧٨٩'[int(m[0])], str(s))
 
 
@@ -91,7 +98,8 @@ def section(s):
 
     for t in s.get('comparisons') or []:
         rows = ''.join(f'<tr><td><b>{E(r["criteria"])}</b></td><td>{E(r["colA"])}</td><td>{E(r["colB"])}</td></tr>' for r in t['rows'])
-        out.append(f'<div class="keep"><h4 class="sub">{E(t["title"])}</h4></div><div class="tw"><table class="t cmp5">'
+        # h4.sub is a flex row: the title goes in one <span> so its <bdi> parts stay in the same wrapping line box
+        out.append(f'<div class="keep"><h4 class="sub"><span>{E(t["title"])}</span></h4></div><div class="tw"><table class="t cmp5">'
                    f'<tr><th>وجه المقارنة</th><th>{E(t["colAHeader"])}</th><th>{E(t["colBHeader"])}</th></tr>{rows}</table></div>')
 
     why = [c for c in s['flipCards'] if c['type'] == 'تعليل']
@@ -130,7 +138,9 @@ def chapter(ch):
     body = '\n'.join(section(s) for s in ch['sections'])
     html = f'<section class="g5c{n}">\n{opener}\n{body}\n{wrap}\n</section>'
 
-    mcq = [{'q': E(q['question']), 'o': [E(o) for o in q['options']], 'a': q['correctIndex'], 'x': E(q['explanation']), 'xl': 'الشرح'}
+    # an option button is a flex row: an option holding a <bdi> goes in one <span> so the term stays in its line
+    opt = lambda o: (lambda h: f'<span>{h}</span>' if '<bdi>' in h else h)(E(o))
+    mcq = [{'q': E(q['question']), 'o': [opt(o) for o in q['options']], 'a': q['correctIndex'], 'x': E(q['explanation']), 'xl': 'الشرح'}
            for s in ch['sections'] for q in s['quiz']]
     cards = [{'q': E(c['front']), 'a': E(c['back']) + hook(c)} for s in ch['sections'] for c in s['flipCards']]
     return {'n': n, 't': ar, 'c': COL[n], 'lab': 'الفصل', 'html': html, 'mcq': mcq, 'cards': cards}
