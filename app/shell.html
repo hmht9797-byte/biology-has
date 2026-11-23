@@ -300,7 +300,7 @@ function landing(){
   <div class="wrap"><h3 class="sec-h">اختر صفّك</h3>
    <div class="grades">${BOOK.grades.map(g=>{const n=g.chapters.length,d=doneOf(g.id),q=g.chapters.reduce((a,c)=>a+c.mcq.length,0);
      return `<button class="grade${g.soon?' soon':''}" style="--cc:${g.c}" data-g="${g.id}" ${g.soon?'disabled':''}>
-      <span class="gn">${({1:'الأول',2:'الثاني',3:'الثالث',4:'الرابع',6:'السادس'})[g.id]||''}</span><span class="gt"><b>الصف ${g.name}</b><small>${g.soon?'قريبًا بإذن الله':g.sub+'، '+nAR(q,'qi')}</small>
+      <span class="gn">${({1:'الأول',2:'الثاني',3:'الثالث',4:'الرابع',5:'الخامس',6:'السادس'})[g.id]||''}</span><span class="gt"><b>الصف ${g.name}</b><small>${g.soon?'قريبًا بإذن الله':g.sub+'، '+nAR(q,'qi')}</small>
       ${g.soon?'':`<span class="gp"><i style="width:${n?d/n*100:0}%"></i></span><small>أتممت ${AR(d)} من ${AR(n)}</small>`}</span></button>`}).join('')}</div>
    <h3 class="sec-h">أدوات التعلّم</h3>
    <div class="tools"><button data-go="lab"><span>${ico('cube',26)}</span><b>المختبر ثلاثي الأبعاد</b><small>مجسّمات تدور ٣٦٠°</small></button><button data-go="tests"><span>${ico('test',26)}</span><b>مركز الاختبارات</b><small>سريع، شامل، تحدّي الوقت</small></button><button data-go="cards"><span>${ico('cards',26)}</span><b>بطاقات الحفظ الذكية</b><small>تكرار متباعد يثبّت المعلومة</small></button><button data-go="figs"><span>${ico('draw',26)}</span><b>الرسوم المطلوبة</b><small>كل رسوم الكتاب مع اختبار الأسماء</small></button></div>
@@ -423,7 +423,7 @@ function qShow(){
     if($('.qo').dataset.d)return;$('.qo').dataset.d=1;
     const k=+b.dataset.k; document.querySelectorAll('.qo button')[q.a].classList.add('right');
     if(k===q.a)QZ.score++;else b.classList.add('wrong');
-    if(q.x){$('#qx').innerHTML='<b>التصحيح:</b> '+q.x;$('#qx').hidden=false}
+    if(q.x){$('#qx').innerHTML='<b>'+(q.xl||'التصحيح')+':</b> '+q.x;$('#qx').hidden=false}
     $('#qn').hidden=false;$('#qn').focus();
   });
   $('#qn').onclick=()=>{QZ.i++;qShow();toTop0()};

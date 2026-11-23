@@ -1,6 +1,6 @@
 // ===== Extra sections: 3D lab, test centre, smart flashcards, contact =====
 const CONTACT = { name: 'الأستاذ حسن مجتبى الطويل', facebook: 'https://www.facebook.com/share/1EQqwpqXBn/?mibextid=wwXIfr', instagram: 'https://www.instagram.com/biohmt?bqrl=enJvYzdnNGdha3A4&utm_source=qr', phone: '07877887754', email: 'hmht9797@gmail.com' };
-const GN = { 1: 'الأول', 2: 'الثاني', 3: 'الثالث', 4: 'الرابع', 6: 'السادس' };
+const GN = { 1: 'الأول', 2: 'الثاني', 3: 'الثالث', 4: 'الرابع', 5: 'الخامس', 6: 'السادس' };
 
 // ---------- icon library: one source for every UI icon (24px grid, 2px stroke, round caps) ----------
 const ICON = {
@@ -239,7 +239,7 @@ function tShow() {
     if ($('.qo').dataset.d) return; $('.qo').dataset.d = 1;
     const k = +b.dataset.k; document.querySelectorAll('.qo button')[q.a].classList.add('right');
     if (k === q.a) Q.score++; else { b.classList.add('wrong'); Q.wrong.push(q); }
-    if (q.x && !Q.timed) { $('#qx').innerHTML = '<b>التصحيح:</b> ' + q.x; $('#qx').hidden = false; }
+    if (q.x && !Q.timed) { $('#qx').innerHTML = '<b>' + (q.xl || 'التصحيح') + ':</b> ' + q.x; $('#qx').hidden = false; }
     if (Q.timed) { setTimeout(() => { Q.i++; tShow(); }, 550); return; }
     $('#qn').hidden = false; $('#qn').focus();
   });
@@ -275,6 +275,14 @@ function cardsRun(g) {
   CR = { g, list: all.slice(0, 15), i: 0, ok: 0 };
   shell('مراجعة بطاقات الصف ' + GN[g], '<div class="wrap quiz" id="cr"></div>'); cShow();
 }
+// a card grows to its longer face (up to 70% of the screen), so a long model answer never spills out of it; past that the face scrolls
+function fitCard() {
+  const fin = $('#fc .fin'); if (!fin) return; const faces = [...fin.children];
+  fin.style.minHeight = ''; faces.forEach(f => f.style.overflowY = '');
+  const need = Math.max(...faces.map(f => f.scrollHeight + f.offsetHeight - f.clientHeight)), cap = Math.max(fin.clientHeight, Math.round(innerHeight * .7));
+  if (need > fin.clientHeight) fin.style.minHeight = Math.min(need, cap) + 'px';
+  if (need > cap) faces.forEach(f => f.style.overflowY = 'auto');
+}
 function cShow() {
   const R = CR, box = $('#cr');
   if (R.i >= R.list.length) { box.innerHTML = `<div class="qcard score"><div>انتهت الجلسة</div><b>${AR(R.ok)} / ${AR(R.list.length)}</b><p>عرفتها من أول مرة. البطاقات الصعبة ستظهر لك أكثر في الجلسة القادمة.</p><button class="qnext" id="again">${ico('reset', 18)}جلسة جديدة</button><button class="qnext alt" id="back">${ico('cards', 18)}صناديق البطاقات</button></div>`; $('#again').onclick = () => cardsRun(R.g); $('#back').onclick = () => go('cards-g' + R.g); return; }
@@ -283,7 +291,7 @@ function cShow() {
    <div class="fbtns" id="fbt" hidden><button class="no" id="fNo">${ico('reset', 18)}لم أعرفها</button><button class="yes" id="fYes">${ico('check', 18)}عرفتها</button></div>
    <p class="mnote">بطاقة ${AR(R.i + 1)} من ${AR(R.list.length)}، الصندوق ${AR(k.box + 1)}</p>`;
   const flip = () => { $('#fc').classList.add('flip'); $('#fbt').hidden = false; };
-  $('#fc').onclick = flip; $('#fc').onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } };
+  fitCard(); $('#fc').onclick = flip; $('#fc').onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } };
   const mark = good => { const S = store.get('bioLeitner', {}); S[k.id] = good ? Math.min(3, (S[k.id] || 0) + 1) : 0; store.set('bioLeitner', S); if (good) R.ok++; R.i++; cShow(); };
   $('#fYes').onclick = () => mark(true); $('#fNo').onclick = () => mark(false);
 }
@@ -311,6 +319,6 @@ function wireCopy() {
 function contactPage() {
   tabbar('me');
   shell('تواصل مع الأستاذ', `<div class="wrap xpage">${contactHtml()}
-   <div class="about"><h3 class="sec-h">عن الملازم</h3><p>ملازم علم الأحياء التفاعلية للصفوف الأول والثاني والثالث المتوسط، والرابع العلمي، والسادس العلمي، وفق منهج وزارة التربية العراقية: شرح مبسّط، رسوم توضيحية ومجسّمات ثلاثية الأبعاد، اختبارات تفاعلية، وبطاقات حفظ ذكية، مع الأسئلة الوزارية لصف السادس العلمي.</p></div></div>`);
+   <div class="about"><h3 class="sec-h">عن الملازم</h3><p>ملازم علم الأحياء التفاعلية للصفوف الأول والثاني والثالث المتوسط، والرابع العلمي، والخامس العلمي، والسادس العلمي، وفق منهج وزارة التربية العراقية: شرح مبسّط، رسوم توضيحية ومجسّمات ثلاثية الأبعاد، اختبارات تفاعلية، وبطاقات حفظ ذكية، مع الأسئلة الوزارية لصف السادس العلمي.</p></div></div>`);
   wireCopy();
 }

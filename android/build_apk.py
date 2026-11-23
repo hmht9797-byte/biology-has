@@ -13,7 +13,7 @@ T = '/tmp/claude-0/apk/tools'
 OUT = A + '/build'
 PKG = 'com.hassan.bio3'
 LABEL = 'ملازم الأحياء'
-VER_CODE, VER_NAME = 22, '3.4.4'
+VER_CODE, VER_NAME = 23, '3.5.0'
 shutil.rmtree(OUT, ignore_errors=True); os.makedirs(OUT + '/assets/fonts'); os.makedirs(OUT + '/classes')
 
 def run(*cmd):

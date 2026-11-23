@@ -723,3 +723,22 @@ body{overflow-wrap:break-word}
 .wzcard sub,.wzcard sup,.wzblk sub,.wzblk sup{line-height:0}
 .wzcard .b .wa b{color:#a7f3d0}
 .wzblk .ans b{color:var(--em-800)}
+
+/* ---------- 10. GRADE 5 BOOKLET: elements built by g5/build_g5.py (v3.5.0) ---------- */
+/* the focused summary that opens every lesson */
+.reader section ul.pts{margin:10px 0 14px;padding-inline-start:22px;display:grid;gap:8px;line-height:1.9}
+.reader section ul.pts li::marker{color:var(--em-500)}
+/* memory key under a definition, a reason, or on the back of a flashcard */
+small.hk{display:block;margin-top:4px;font-size:.92em;line-height:1.75;color:#8a5a00}
+/* a face whose content is taller than the card starts at its top, so the card can measure and fit it (fitCard in extras.js) */
+.fcf,.fcb{justify-content:safe center}
+/* on the dark back of a flashcard the key is light amber (#fde68a on #065f46 ≈ 7.9:1) */
+.fa small.hk{margin-top:12px;padding-top:10px;border-top:1px dashed rgba(253,230,138,.55);color:#fde68a}
+/* six grade tabs (v3.5.0): tighter on narrow phones so «السادس» is not cut off */
+@media (max-width:400px){.gtabs{gap:2px;padding:3px}.gtabs button{padding:6px 3px;font-size:13px}}
+@media (max-width:340px){.gtabs button{padding:5px 2px;font-size:12px}}
+/* comparison tables: break between words, never inside one (the theme default is overflow-wrap:anywhere) */
+.reader section table.t.cmp5 td,.reader section table.t.cmp5 th{overflow-wrap:break-word;word-break:normal}
+.reader section table.t.cmp5 tr>td:first-child{min-width:6.5em}
+/* place, inputs and outputs under each step of a process */
+.steps small.io{display:block;margin-top:2px;font-size:.92em;line-height:1.75;color:var(--muted)}

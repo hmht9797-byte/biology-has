@@ -1295,6 +1295,25 @@ body{overflow-wrap:break-word}
 .wzcard .b .wa b{color:#a7f3d0}
 .wzblk .ans b{color:var(--em-800)}
 
+/* ---------- 10. GRADE 5 BOOKLET: elements built by g5/build_g5.py (v3.5.0) ---------- */
+/* the focused summary that opens every lesson */
+.reader section ul.pts{margin:10px 0 14px;padding-inline-start:22px;display:grid;gap:8px;line-height:1.9}
+.reader section ul.pts li::marker{color:var(--em-500)}
+/* memory key under a definition, a reason, or on the back of a flashcard */
+small.hk{display:block;margin-top:4px;font-size:.92em;line-height:1.75;color:#8a5a00}
+/* a face whose content is taller than the card starts at its top, so the card can measure and fit it (fitCard in extras.js) */
+.fcf,.fcb{justify-content:safe center}
+/* on the dark back of a flashcard the key is light amber (#fde68a on #065f46 ≈ 7.9:1) */
+.fa small.hk{margin-top:12px;padding-top:10px;border-top:1px dashed rgba(253,230,138,.55);color:#fde68a}
+/* six grade tabs (v3.5.0): tighter on narrow phones so «السادس» is not cut off */
+@media (max-width:400px){.gtabs{gap:2px;padding:3px}.gtabs button{padding:6px 3px;font-size:13px}}
+@media (max-width:340px){.gtabs button{padding:5px 2px;font-size:12px}}
+/* comparison tables: break between words, never inside one (the theme default is overflow-wrap:anywhere) */
+.reader section table.t.cmp5 td,.reader section table.t.cmp5 th{overflow-wrap:break-word;word-break:normal}
+.reader section table.t.cmp5 tr>td:first-child{min-width:6.5em}
+/* place, inputs and outputs under each step of a process */
+.steps small.io{display:block;margin-top:2px;font-size:.92em;line-height:1.75;color:var(--muted)}
+
 </style>
 
 <header class="bar"><div class="wrap">
@@ -1360,7 +1379,7 @@ function landing(){
   <div class="wrap"><h3 class="sec-h">اختر صفّك</h3>
    <div class="grades">${BOOK.grades.map(g=>{const n=g.chapters.length,d=doneOf(g.id),q=g.chapters.reduce((a,c)=>a+c.mcq.length,0);
      return `<button class="grade${g.soon?' soon':''}" style="--cc:${g.c}" data-g="${g.id}" ${g.soon?'disabled':''}>
-      <span class="gn">${({1:'الأول',2:'الثاني',3:'الثالث',4:'الرابع',6:'السادس'})[g.id]||''}</span><span class="gt"><b>الصف ${g.name}</b><small>${g.soon?'قريبًا بإذن الله':g.sub+'، '+nAR(q,'qi')}</small>
+      <span class="gn">${({1:'الأول',2:'الثاني',3:'الثالث',4:'الرابع',5:'الخامس',6:'السادس'})[g.id]||''}</span><span class="gt"><b>الصف ${g.name}</b><small>${g.soon?'قريبًا بإذن الله':g.sub+'، '+nAR(q,'qi')}</small>
       ${g.soon?'':`<span class="gp"><i style="width:${n?d/n*100:0}%"></i></span><small>أتممت ${AR(d)} من ${AR(n)}</small>`}</span></button>`}).join('')}</div>
    <h3 class="sec-h">أدوات التعلّم</h3>
    <div class="tools"><button data-go="lab"><span>${ico('cube',26)}</span><b>المختبر ثلاثي الأبعاد</b><small>مجسّمات تدور ٣٦٠°</small></button><button data-go="tests"><span>${ico('test',26)}</span><b>مركز الاختبارات</b><small>سريع، شامل، تحدّي الوقت</small></button><button data-go="cards"><span>${ico('cards',26)}</span><b>بطاقات الحفظ الذكية</b><small>تكرار متباعد يثبّت المعلومة</small></button><button data-go="figs"><span>${ico('draw',26)}</span><b>الرسوم المطلوبة</b><small>كل رسوم الكتاب مع اختبار الأسماء</small></button></div>
@@ -1483,7 +1502,7 @@ function qShow(){
     if($('.qo').dataset.d)return;$('.qo').dataset.d=1;
     const k=+b.dataset.k; document.querySelectorAll('.qo button')[q.a].classList.add('right');
     if(k===q.a)QZ.score++;else b.classList.add('wrong');
-    if(q.x){$('#qx').innerHTML='<b>التصحيح:</b> '+q.x;$('#qx').hidden=false}
+    if(q.x){$('#qx').innerHTML='<b>'+(q.xl||'التصحيح')+':</b> '+q.x;$('#qx').hidden=false}
     $('#qn').hidden=false;$('#qn').focus();
   });
   $('#qn').onclick=()=>{QZ.i++;qShow();toTop0()};
@@ -1847,7 +1866,7 @@ const LAB = (() => {
 
 // ===== Extra sections: 3D lab, test centre, smart flashcards, contact =====
 const CONTACT = { name: 'الأستاذ حسن مجتبى الطويل', facebook: 'https://www.facebook.com/share/1EQqwpqXBn/?mibextid=wwXIfr', instagram: 'https://www.instagram.com/biohmt?bqrl=enJvYzdnNGdha3A4&utm_source=qr', phone: '07877887754', email: 'hmht9797@gmail.com' };
-const GN = { 1: 'الأول', 2: 'الثاني', 3: 'الثالث', 4: 'الرابع', 6: 'السادس' };
+const GN = { 1: 'الأول', 2: 'الثاني', 3: 'الثالث', 4: 'الرابع', 5: 'الخامس', 6: 'السادس' };
 
 // ---------- icon library: one source for every UI icon (24px grid, 2px stroke, round caps) ----------
 const ICON = {
@@ -2086,7 +2105,7 @@ function tShow() {
     if ($('.qo').dataset.d) return; $('.qo').dataset.d = 1;
     const k = +b.dataset.k; document.querySelectorAll('.qo button')[q.a].classList.add('right');
     if (k === q.a) Q.score++; else { b.classList.add('wrong'); Q.wrong.push(q); }
-    if (q.x && !Q.timed) { $('#qx').innerHTML = '<b>التصحيح:</b> ' + q.x; $('#qx').hidden = false; }
+    if (q.x && !Q.timed) { $('#qx').innerHTML = '<b>' + (q.xl || 'التصحيح') + ':</b> ' + q.x; $('#qx').hidden = false; }
     if (Q.timed) { setTimeout(() => { Q.i++; tShow(); }, 550); return; }
     $('#qn').hidden = false; $('#qn').focus();
   });
@@ -2122,6 +2141,14 @@ function cardsRun(g) {
   CR = { g, list: all.slice(0, 15), i: 0, ok: 0 };
   shell('مراجعة بطاقات الصف ' + GN[g], '<div class="wrap quiz" id="cr"></div>'); cShow();
 }
+// a card grows to its longer face (up to 70% of the screen), so a long model answer never spills out of it; past that the face scrolls
+function fitCard() {
+  const fin = $('#fc .fin'); if (!fin) return; const faces = [...fin.children];
+  fin.style.minHeight = ''; faces.forEach(f => f.style.overflowY = '');
+  const need = Math.max(...faces.map(f => f.scrollHeight + f.offsetHeight - f.clientHeight)), cap = Math.max(fin.clientHeight, Math.round(innerHeight * .7));
+  if (need > fin.clientHeight) fin.style.minHeight = Math.min(need, cap) + 'px';
+  if (need > cap) faces.forEach(f => f.style.overflowY = 'auto');
+}
 function cShow() {
   const R = CR, box = $('#cr');
   if (R.i >= R.list.length) { box.innerHTML = `<div class="qcard score"><div>انتهت الجلسة</div><b>${AR(R.ok)} / ${AR(R.list.length)}</b><p>عرفتها من أول مرة. البطاقات الصعبة ستظهر لك أكثر في الجلسة القادمة.</p><button class="qnext" id="again">${ico('reset', 18)}جلسة جديدة</button><button class="qnext alt" id="back">${ico('cards', 18)}صناديق البطاقات</button></div>`; $('#again').onclick = () => cardsRun(R.g); $('#back').onclick = () => go('cards-g' + R.g); return; }
@@ -2130,7 +2157,7 @@ function cShow() {
    <div class="fbtns" id="fbt" hidden><button class="no" id="fNo">${ico('reset', 18)}لم أعرفها</button><button class="yes" id="fYes">${ico('check', 18)}عرفتها</button></div>
    <p class="mnote">بطاقة ${AR(R.i + 1)} من ${AR(R.list.length)}، الصندوق ${AR(k.box + 1)}</p>`;
   const flip = () => { $('#fc').classList.add('flip'); $('#fbt').hidden = false; };
-  $('#fc').onclick = flip; $('#fc').onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } };
+  fitCard(); $('#fc').onclick = flip; $('#fc').onkeydown = e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } };
   const mark = good => { const S = store.get('bioLeitner', {}); S[k.id] = good ? Math.min(3, (S[k.id] || 0) + 1) : 0; store.set('bioLeitner', S); if (good) R.ok++; R.i++; cShow(); };
   $('#fYes').onclick = () => mark(true); $('#fNo').onclick = () => mark(false);
 }
@@ -2158,7 +2185,7 @@ function wireCopy() {
 function contactPage() {
   tabbar('me');
   shell('تواصل مع الأستاذ', `<div class="wrap xpage">${contactHtml()}
-   <div class="about"><h3 class="sec-h">عن الملازم</h3><p>ملازم علم الأحياء التفاعلية للصفوف الأول والثاني والثالث المتوسط، والرابع العلمي، والسادس العلمي، وفق منهج وزارة التربية العراقية: شرح مبسّط، رسوم توضيحية ومجسّمات ثلاثية الأبعاد، اختبارات تفاعلية، وبطاقات حفظ ذكية، مع الأسئلة الوزارية لصف السادس العلمي.</p></div></div>`);
+   <div class="about"><h3 class="sec-h">عن الملازم</h3><p>ملازم علم الأحياء التفاعلية للصفوف الأول والثاني والثالث المتوسط، والرابع العلمي، والخامس العلمي، والسادس العلمي، وفق منهج وزارة التربية العراقية: شرح مبسّط، رسوم توضيحية ومجسّمات ثلاثية الأبعاد، اختبارات تفاعلية، وبطاقات حفظ ذكية، مع الأسئلة الوزارية لصف السادس العلمي.</p></div></div>`);
   wireCopy();
 }
 

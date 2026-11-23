@@ -120,6 +120,11 @@ for i in range(1, 11):
     h, mcq, cards = finish(h)
     g4.append({'n': i, 't': T4[i], 'c': C4[i], 'lab': 'الفصل', 'html': h, 'mcq': mcq, 'cards': cards})
 
+# ---------- grade 5 (scientific): structured study data in g5/data, see g5/build_g5.py ----------
+sys.path.insert(0, os.path.join(R, 'g5'))
+import build_g5
+g5 = build_g5.grade()
+
 # ---------- extra question banks (qbank/gN.txt) ----------
 import random, hashlib
 def load_bank(path):
@@ -223,6 +228,7 @@ book = {'grades': [
     {'id': 2, 'name': 'الثاني المتوسط', 'sub': 'التصنيف والتنوّع والبيئة، ٧ فصول', 'c': '#127a5d', 'chapters': g2},
     {'id': 3, 'name': 'الثالث المتوسط', 'sub': 'الإنسان وصحته، ١١ فصلًا', 'c': '#5b2a86', 'chapters': g3},
     {'id': 4, 'name': 'الرابع العلمي', 'sub': 'علم البيئة والسلوك، ١٠ فصول', 'c': '#2e7d32', 'chapters': g4},
+    g5,
     {'id': 6, 'name': 'السادس العلمي', 'sub': 'الموسوعة الهجينة، ٥ فصول + نماذج', 'c': '#b8860b', 'chapters': g6}]}
 book['figs'] = figs
 # chapter / grade colours carry white text (number tiles, grade chips): darken any that is under 4.5:1 on white, keeping its hue
@@ -245,9 +251,7 @@ def _fix(o):
 _fix(book); print('darkened chapter colours:', DARK)
 json.dump(book, open(D + '/chapters.json', 'w', encoding='utf8'), ensure_ascii=False)
 
-css = open(R + '/style.css', encoding='utf8').read()
-css = re.sub(r'@page[^{]*\{[^}]*\}', '', css)
-shell = open(D + '/shell.html', encoding='utf8').read().replace('/*BOOKCSS*/', css).replace('/*THEMECSS*/', open(D + '/theme.css', encoding='utf8').read()).replace('/*EXTRAJS*/', open(D + '/lab3d.js', encoding='utf8').read() + '\n' + open(D + '/extras.js', encoding='utf8').read() + '\n' + open(D + '/wiz.js', encoding='utf8').read())
-open(D + '/index.html', 'w', encoding='utf8').write(shell)
-for nm, gg in (('g1', g1), ('g2', g2), ('g3', g3), ('g4', g4), ('g6', g6)): print(nm, 'mcq', sum(len(c['mcq']) for c in gg), 'cards', sum(len(c['cards']) for c in gg))
+from build_shell import write_index
+write_index()
+for nm, gg in (('g1', g1), ('g2', g2), ('g3', g3), ('g4', g4), ('g5', g5['chapters']), ('g6', g6)): print(nm, 'mcq', sum(len(c['mcq']) for c in gg), 'cards', sum(len(c['cards']) for c in gg))
 print('json KB', os.path.getsize(D+'/chapters.json')//1024)
