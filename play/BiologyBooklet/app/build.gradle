@@ -1,0 +1,41 @@
+plugins { id 'com.android.application' }
+
+// Upload key: copy keystore.properties.example to keystore.properties and fill it in.
+def ksFile = rootProject.file('keystore.properties')
+def ks = new Properties()
+if (ksFile.exists()) ks.load(new FileInputStream(ksFile))
+
+android {
+    namespace 'com.hassan.bio3'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId 'com.hassan.bio3'
+        minSdk 24
+        targetSdk 36
+        versionCode 22
+        versionName '3.4.4'
+    }
+    signingConfigs {
+        release {
+            if (ksFile.exists()) {
+                storeFile rootProject.file(ks['storeFile'])
+                storePassword ks['storePassword']
+                keyAlias ks['keyAlias']
+                keyPassword ks['keyPassword']
+                storeType 'PKCS12'
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (ksFile.exists()) signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    androidResources { noCompress += ['html', 'json'] }
+}

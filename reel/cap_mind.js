@@ -1,0 +1,11 @@
+const {chromium}=require('playwright');const fs=require('fs');const SP=process.env.SP;
+(async()=>{const b=await chromium.launch();const ctx=await b.newContext({viewport:{width:390,height:844},deviceScaleFactor:3});const p=await ctx.newPage();
+await p.goto('http://localhost:8765/index.html#g6-ch-1');await p.waitForTimeout(900);
+await p.addStyleTag({content:'*,*::before,*::after{animation-duration:0s!important;animation-delay:0s!important;transition:none!important}'});
+const mm=await p.evaluate(()=>{const h=[...document.querySelectorAll('.reader h3')].find(e=>e.textContent.includes('الخريطة الذهنية للفصل'));const k=h.closest('.keep');const n=k.nextElementSibling;return {y0:Math.round(k.getBoundingClientRect().top+scrollY-14),y1:Math.round(n.getBoundingClientRect().bottom+scrollY+18)}});
+const Y0=mm.y0-330,Y1=mm.y1+330,H=Y1-Y0;
+await p.addStyleTag({content:'.bar{visibility:hidden!important}.tabs,.nav,.totop{display:none!important}.rtools{visibility:hidden!important}'});
+await p.setViewportSize({width:390,height:H});await p.evaluate(y=>scrollTo(0,y),Y0);await p.waitForTimeout(300);
+await p.screenshot({path:SP+'/reel/s/mind.jpg',type:'jpeg',quality:84,clip:{x:0,y:0,width:390,height:H}});
+const m=JSON.parse(fs.readFileSync(SP+'/reel/meta.json'));m.mind.h=H;m.mind.mapTop=mm.y0-Y0;m.mind.mapH=mm.y1-mm.y0;fs.writeFileSync(SP+'/reel/meta.json',JSON.stringify(m,null,1));
+console.log('mind h',H,'mapTop',mm.y0-Y0,'mapH',mm.y1-mm.y0);await b.close()})();

@@ -1,0 +1,128 @@
+{
+ "v": 3,
+ "layout": "files",
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-11-21T02:45:06Z"
+ },
+ "title": "ملازم الأحياء التفاعلية",
+ "namespace": "Malazim",
+ "libraries": [],
+ "sections": {},
+ "groups": [
+  "Logos",
+  "Store"
+ ],
+ "assetGroups": {
+  "Logos": {
+   "name": "Logos",
+   "tile": "m",
+   "order": [
+    "app-icon.svg",
+    "app-icon-play-512.png",
+    "app-icon-monochrome.svg"
+   ],
+   "files": {
+    "app-icon.svg": {
+     "name": "app-icon.svg",
+     "blob": "66bbdfc39bdcd6601a7c1851a46d60a5",
+     "size": 2591,
+     "type": "image/svg+xml"
+    },
+    "app-icon-play-512.png": {
+     "name": "app-icon-play-512.png",
+     "blob": "ed6e7c16ef6c88f4d33b3a34aca597e9",
+     "size": 182636,
+     "type": "image/png"
+    },
+    "app-icon-monochrome.svg": {
+     "name": "app-icon-monochrome.svg",
+     "blob": "bed0ab1827995d8b433e636a819a6ba6",
+     "size": 1676,
+     "type": "image/svg+xml"
+    }
+   }
+  },
+  "Store": {
+   "name": "Store",
+   "tile": "s",
+   "order": [
+    "feature-graphic-1024x500.png",
+    "screen-01-home.png",
+    "screen-02-grades.png",
+    "screen-03-reader.png",
+    "screen-04-lab3d.png",
+    "screen-05-figure-selftest.png",
+    "screen-06-quiz.png",
+    "screen-07-flashcards.png",
+    "screen-08-ministerial.png"
+   ],
+   "files": {
+    "feature-graphic-1024x500.png": {
+     "name": "feature-graphic-1024x500.png",
+     "blob": "4ef2007d492070e340ae0c384b1b4fd6",
+     "size": 387707,
+     "type": "image/png"
+    },
+    "screen-01-home.png": {
+     "name": "screen-01-home.png",
+     "blob": "9a857e752986192d7d67efe1e517266b",
+     "size": 1239847,
+     "type": "image/png"
+    },
+    "screen-02-grades.png": {
+     "name": "screen-02-grades.png",
+     "blob": "7c3fa624c65db38303d9253e91bb187f",
+     "size": 514491,
+     "type": "image/png"
+    },
+    "screen-03-reader.png": {
+     "name": "screen-03-reader.png",
+     "blob": "9e94975000246b9e3520a2d9d34a734e",
+     "size": 1286719,
+     "type": "image/png"
+    },
+    "screen-04-lab3d.png": {
+     "name": "screen-04-lab3d.png",
+     "blob": "bb538ab5cd2678847e54c76edd7d17aa",
+     "size": 1157183,
+     "type": "image/png"
+    },
+    "screen-05-figure-selftest.png": {
+     "name": "screen-05-figure-selftest.png",
+     "blob": "5a4bf08aff3d3c0b383ca35e448e144f",
+     "size": 334812,
+     "type": "image/png"
+    },
+    "screen-06-quiz.png": {
+     "name": "screen-06-quiz.png",
+     "blob": "61c8aefea1ed6e98b156f6fdaeefaa10",
+     "size": 285316,
+     "type": "image/png"
+    },
+    "screen-07-flashcards.png": {
+     "name": "screen-07-flashcards.png",
+     "blob": "d39d831fc5fcbf57bd1652c5c5e89246",
+     "size": 1019608,
+     "type": "image/png"
+    },
+    "screen-08-ministerial.png": {
+     "name": "screen-08-ministerial.png",
+     "blob": "fd1064e213e3ee45cebc78a3d165a866",
+     "size": 339897,
+     "type": "image/png"
+    }
+   }
+  }
+ },
+ "blobs": {},
+ "docs": {
+  "sections": []
+ },
+ "lastChange": {
+  "by": "Claude",
+  "at": "2026-11-21T10:58:55Z",
+  "via": "Claude Code",
+  "note": "v3.4.1 design-review fixes: focus ring + halo, 44px targets, toggle style, offline-true error copy, accessible sheet/tabs, card bars match labels, grade and chapter colour tokens, frameless Play icon, new feature graphic and screenshots."
+ }
+}

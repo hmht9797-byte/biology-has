@@ -1,0 +1,44 @@
+# ===== Secrets: NEVER commit these (this repository is public) =====
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.pem
+keystore.properties
+local.properties
+.env
+.env.*
+!keystore.properties.example
+
+# ===== Build outputs (regenerate with the steps in play/BiologyBooklet/اقرأني_خطوات_النشر.txt) =====
+build/
+.gradle/
+.cxx/
+captures/
+__pycache__/
+*.pyc
+node_modules/
+*.apk
+*.aab
+*.class
+*.dex
+
+# ===== Large media and archives (kept out of git; the reel scripts in reel/ stay) =====
+*.mp4
+*.mov
+*.wav
+*.mp3
+*.m4a
+*.zip
+reel/audio/
+
+# ===== Scratch folders and test captures =====
+chk/
+chk4/
+chk5/
+whisper/
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+*.iml

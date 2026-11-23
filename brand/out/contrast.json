@@ -1,0 +1,170 @@
+[
+ {
+  "pair": "Body text on page",
+  "fg": "#0f241d",
+  "bg": "#eff5f2",
+  "ratio": 14.73,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "Body text on card",
+  "fg": "#0f241d",
+  "bg": "#ffffff",
+  "ratio": 16.27,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "Secondary text on card",
+  "fg": "#56695f",
+  "bg": "#ffffff",
+  "ratio": 5.86,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "Secondary text on page",
+  "fg": "#56695f",
+  "bg": "#eff5f2",
+  "ratio": 5.31,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "Link / brand text on card",
+  "fg": "#047857",
+  "bg": "#ffffff",
+  "ratio": 5.48,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "Brand text on brand-soft",
+  "fg": "#065f46",
+  "bg": "#ecfdf5",
+  "ratio": 7.29,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "Gold text on card",
+  "fg": "#946a15",
+  "bg": "#ffffff",
+  "ratio": 4.85,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "White on header",
+  "fg": "#ffffff",
+  "bg": "#043127",
+  "ratio": 14.25,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "Gold on header (icon, titles)",
+  "fg": "#e6d1a8",
+  "bg": "#043127",
+  "ratio": 9.53,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "Ivory on deep emerald (store art)",
+  "fg": "#fbf6e8",
+  "bg": "#064534",
+  "ratio": 10.19,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "Success text",
+  "fg": "#166534",
+  "bg": "#dcfce7",
+  "ratio": 6.49,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "Error text",
+  "fg": "#b42318",
+  "bg": "#fff1f0",
+  "ratio": 5.98,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "Warning text",
+  "fg": "#92400e",
+  "bg": "#fef3c7",
+  "ratio": 6.37,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "Info text",
+  "fg": "#0f766e",
+  "bg": "#f0fdfa",
+  "ratio": 5.25,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "Focus ring vs card (non-text)",
+  "fg": "#059669",
+  "bg": "#ffffff",
+  "ratio": 3.77,
+  "need": 3.0,
+  "ok": true
+ },
+ {
+  "pair": "[dark] Body text",
+  "fg": "#eaf5ef",
+  "bg": "#06150f",
+  "ratio": 16.76,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "[dark] Secondary text on surface",
+  "fg": "#93ada2",
+  "bg": "#0c2219",
+  "ratio": 6.94,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "[dark] Brand text on surface",
+  "fg": "#34d399",
+  "bg": "#0c2219",
+  "ratio": 8.68,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "[dark] Gold text on surface",
+  "fg": "#e6d1a8",
+  "bg": "#0c2219",
+  "ratio": 11.16,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "[dark] Button label on brand",
+  "fg": "#03231a",
+  "bg": "#34d399",
+  "ratio": 8.68,
+  "need": 4.5,
+  "ok": true
+ },
+ {
+  "pair": "White label on primary button gradient (worst point under the label)",
+  "fg": "#ffffff",
+  "bg": "em-800→em-600",
+  "ratio": 4.59,
+  "need": 4.5,
+  "ok": true
+ }
+]

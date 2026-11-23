@@ -1,0 +1,438 @@
+{
+ "land": {
+  "img": "land.jpg",
+  "w": 390,
+  "h": 2043,
+  "hdr": "hdr_land.jpg",
+  "hdrH": 61,
+  "ftr": "ftr_land.jpg",
+  "ftrH": 77,
+  "rects": {
+   "teacher": [
+    116,
+    266,
+    258,
+    121
+   ],
+   "g6": [
+    16,
+    1343,
+    358,
+    197
+   ],
+   "g1": [
+    16,
+    499,
+    358,
+    197
+   ],
+   "grades": [
+    16,
+    499,
+    358,
+    1042
+   ],
+   "tools": [
+    16,
+    1618,
+    358,
+    400
+   ]
+  }
+ },
+ "labhome": {
+  "img": "labhome.jpg",
+  "w": 390,
+  "h": 1326,
+  "hdr": "hdr_lab.jpg",
+  "hdrH": 61,
+  "ftr": "ftr_lab.jpg",
+  "ftrH": 77,
+  "rects": {
+   "mic": [
+    16,
+    420,
+    358,
+    228
+   ],
+   "seg": [
+    16,
+    332,
+    358,
+    72
+   ]
+  }
+ },
+ "labview": {
+  "img": "labview.jpg",
+  "w": 390,
+  "h": 844,
+  "rects": {
+   "stage": [
+    0,
+    61,
+    390,
+    494
+   ],
+   "vbar": [
+    0,
+    555,
+    390,
+    116
+   ]
+  },
+  "frames": [
+   "lab_00.jpg",
+   "lab_01.jpg",
+   "lab_02.jpg",
+   "lab_03.jpg",
+   "lab_04.jpg",
+   "lab_05.jpg",
+   "lab_06.jpg",
+   "lab_07.jpg",
+   "lab_08.jpg",
+   "lab_09.jpg",
+   "lab_10.jpg",
+   "lab_11.jpg",
+   "lab_12.jpg",
+   "lab_13.jpg",
+   "lab_14.jpg",
+   "lab_15.jpg",
+   "lab_16.jpg",
+   "lab_17.jpg",
+   "lab_18.jpg",
+   "lab_19.jpg",
+   "lab_20.jpg",
+   "lab_21.jpg",
+   "lab_22.jpg",
+   "lab_23.jpg",
+   "lab_24.jpg",
+   "lab_25.jpg",
+   "lab_26.jpg",
+   "lab_27.jpg",
+   "lab_28.jpg",
+   "lab_29.jpg",
+   "lab_30.jpg",
+   "lab_31.jpg",
+   "lab_32.jpg",
+   "lab_33.jpg",
+   "lab_34.jpg",
+   "lab_35.jpg"
+  ]
+ },
+ "figs": {
+  "img": "figs.jpg",
+  "w": 390,
+  "h": 1276,
+  "hdr": "hdr_figs.jpg",
+  "hdrH": 61,
+  "ftr": "ftr_figs.jpg",
+  "ftrH": 77,
+  "rects": {
+   "fig0": [
+    201,
+    553,
+    173,
+    218
+   ],
+   "note": [
+    16,
+    420,
+    358,
+    54
+   ]
+  }
+ },
+ "fig0a": {
+  "img": "fig0a.jpg",
+  "w": 390,
+  "h": 844,
+  "rects": {
+   "quiz": [
+    135,
+    534,
+    129,
+    44
+   ],
+   "fig": [
+    16,
+    165,
+    358,
+    349
+   ]
+  }
+ },
+ "fig0b": {
+  "img": "fig0b.jpg",
+  "w": 390,
+  "h": 844,
+  "rects": {
+   "cov0": [
+    31,
+    348,
+    85,
+    17
+   ],
+   "cov1": [
+    56,
+    430,
+    60,
+    18
+   ],
+   "all": [
+    242,
+    632,
+    132,
+    44
+   ]
+  }
+ },
+ "fig0c": {
+  "img": "fig0c.jpg",
+  "w": 390,
+  "h": 844,
+  "rects": {
+   "score": [
+    16,
+    524,
+    358,
+    36
+   ]
+  }
+ },
+ "mind": {
+  "img": "mind.jpg",
+  "w": 390,
+  "h": 1205,
+  "hdr": "hdr_g6c1.jpg",
+  "hdrH": 61,
+  "ftr": "ftr_g6c1.jpg",
+  "ftrH": 65,
+  "cls": "cmap",
+  "mapTop": 330,
+  "mapH": 545
+ },
+ "examA": {
+  "img": "examA.jpg",
+  "w": 390,
+  "h": 844,
+  "hdr": "hdr_g6c1.jpg",
+  "hdrH": 61,
+  "ftr": "ftr_g6c1.jpg",
+  "ftrH": 65,
+  "rects": {
+   "rv": [
+    193,
+    264,
+    128,
+    38
+   ]
+  }
+ },
+ "examB": {
+  "img": "examB.jpg",
+  "w": 390,
+  "h": 844,
+  "hdr": "hdr_g6c1.jpg",
+  "hdrH": 61,
+  "ftr": "ftr_g6c1.jpg",
+  "ftrH": 65,
+  "rects": {
+   "ans": [
+    66,
+    312,
+    255,
+    54
+   ]
+  }
+ },
+ "cards": {
+  "img": "cards.jpg",
+  "w": 390,
+  "h": 844,
+  "hdr": "hdr_cards.jpg",
+  "hdrH": 61,
+  "ftr": "ftr_cards.jpg",
+  "ftrH": 77,
+  "rects": {
+   "leit": [
+    16,
+    358,
+    358,
+    86
+   ],
+   "start": [
+    16,
+    490,
+    358,
+    80
+   ]
+  }
+ },
+ "cardA": {
+  "img": "cardA.jpg",
+  "w": 390,
+  "h": 844,
+  "rects": {
+   "card": [
+    16,
+    85,
+    358,
+    260
+   ]
+  },
+  "q": "قارن بين الماسح والنافذ في تحضير العيّنة."
+ },
+ "cardB": {
+  "img": "cardB.jpg",
+  "w": 390,
+  "h": 844,
+  "rects": {
+   "card": [
+    16,
+    85,
+    358,
+    260
+   ],
+   "yes": [
+    16,
+    359,
+    174,
+    76
+   ],
+   "no": [
+    200,
+    359,
+    174,
+    76
+   ]
+  }
+ },
+ "quizA": {
+  "img": "quizA.jpg",
+  "w": 390,
+  "h": 844,
+  "rects": {
+   "wrong": [
+    35,
+    338,
+    320,
+    78
+   ],
+   "right": [
+    35,
+    250,
+    320,
+    78
+   ],
+   "q": [
+    35,
+    168,
+    320,
+    68
+   ]
+  }
+ },
+ "quizB": {
+  "img": "quizB.jpg",
+  "w": 390,
+  "h": 844,
+  "rects": {
+   "wrong": [
+    35,
+    338,
+    320,
+    78
+   ],
+   "right": [
+    35,
+    250,
+    320,
+    78
+   ]
+  }
+ },
+ "wiz": {
+  "img": "wiz.jpg",
+  "w": 390,
+  "h": 1182,
+  "hdr": "hdr_wiz.jpg",
+  "hdrH": 61,
+  "ftr": null,
+  "ftrH": 0,
+  "rects": {
+   "head": [
+    16,
+    85,
+    358,
+    153
+   ],
+   "grid": [
+    16,
+    852,
+    358,
+    566
+   ]
+  }
+ },
+ "wizcard": {
+  "img": "wizcard.jpg",
+  "w": 390,
+  "h": 844,
+  "rects": {
+   "card": [
+    16,
+    87,
+    358,
+    300
+   ],
+   "rep": [
+    112,
+    202,
+    100,
+    26
+   ]
+  }
+ },
+ "tests": {
+  "img": "tests.jpg",
+  "w": 390,
+  "h": 969,
+  "hdr": "hdr_tests.jpg",
+  "hdrH": 61,
+  "ftr": "ftr_tests.jpg",
+  "ftrH": 77,
+  "rects": {
+   "modes": [
+    16,
+    306,
+    358,
+    639
+   ],
+   "m1": [
+    16,
+    306,
+    358,
+    151
+   ],
+   "m2": [
+    16,
+    469,
+    358,
+    151
+   ],
+   "m3": [
+    16,
+    631,
+    358,
+    151
+   ],
+   "m4": [
+    16,
+    794,
+    358,
+    151
+   ]
+  }
+ }
+}
