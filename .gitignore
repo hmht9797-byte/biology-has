@@ -42,6 +42,3 @@ whisper/
 Thumbs.db
 .idea/
 *.iml
-
-# motion-graphics chapter summaries are served from the repo via jsDelivr (not packed into the APK/AAB)
-!media/motion/*.mp4

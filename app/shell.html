@@ -346,8 +346,7 @@ function chapter(n){
   const c=CH.find(x=>x.n==n); if(!c) return home();
   $('#quizBtn').hidden=false;$('#barTitle').textContent=(c.lab==='المراجعة الشاملة'?'':unitName(c)+': ')+c.t;
   const last=CH[CH.length-1].n,P='g'+G.id+'-ch-';
-  $('#view').innerHTML=`<div class="wrap reader">${motionCard(G.id,c)}${c.html}</div>`;
-  motionMount(G.id,c,$('#view'));
+  $('#view').innerHTML=`<div class="wrap reader">${c.html}</div>`;
   const nav=$('#nav'); nav.hidden=false; nav.style.setProperty('--cc',c.c);
   $('#prevBtn').disabled=n==1; $('#nextBtn').disabled=n==last;
   $('#prevBtn').onclick=()=>go(P+(n-1)); $('#nextBtn').onclick=()=>go(P+(n+1));
